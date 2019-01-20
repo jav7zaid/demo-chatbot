@@ -18,7 +18,7 @@ restService.post("/revrec", function(req, res) {
     req.body.result &&
     req.body.result.parameters &&
     req.body.result.parameters.reports
-      ? <a href="https://drive.google.com/open?id=1EDSjLvCxIFoHCp-KhCt8DUBlMdWqc-lQ" target="_self">click</a>
+      ? '<a href="https://drive.google.com/open?id=1EDSjLvCxIFoHCp-KhCt8DUBlMdWqc-lQ" target="_self">click</a>'
       : "Seems like some problem. Speak again.";
   return res.json({
     speech: speech,
