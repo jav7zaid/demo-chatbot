@@ -13,7 +13,7 @@ restService.use(
 
 restService.use(bodyParser.json());
 
-restService.post("/revrec", function (req, res) {
+restService.post("/revrec", function(req, res) {
   // var speech =
   //   req.body.result &&
   //   req.body.result.parameters &&
@@ -21,27 +21,52 @@ restService.post("/revrec", function (req, res) {
   //     ? '<a href="https://drive.google.com/open?id=1EDSjLvCxIFoHCp-KhCt8DUBlMdWqc-lQ" target="_self">click</a>'
   //     : "Seems like some problem. Speak again.";
   return res.json({
-    text: `This is a basic card.  Text in a basic card can include "quotes" and
-  most other unicode characters including emoji 📱.  Basic cards also support
-  some markdown formatting like *emphasis* or _italics_, **strong** or
-  __bold__, and ***bold itallic*** or ___strong emphasis___ as well as other
-  things like line  \nbreaks`, // Note the two spaces before '\n' required for
-    // a line break to be rendered in the card.
-    subtitle: 'This is a subtitle',
-    title: 'Title: this is a title',
-    buttons: new Button({
-      title: 'This is a button',
-      url: 'https://assistant.google.com/',
-    }),
-    image: new Image({
-      url: 'https://example.com/image.png',
-      alt: 'Image alternate text',
-    }),
-    display: 'CROPPED',
-  });
+    "conversationToken": "",
+    "expectUserResponse": true,
+    "expectedInputs": [
+        {
+            "inputPrompt": {
+                "richInitialPrompt": {
+                    "items": [
+                        {
+                            "simpleResponse": {
+                                "textToSpeech": "Math and prime numbers it is!"
+                            }
+                        },
+                        {
+                            "basicCard": {
+                                "title": "Math & prime numbers",
+                                "formattedText": "42 is an even composite number. It\n    is composed of three distinct prime numbers multiplied together. It\n    has a total of eight divisors. 42 is an abundant number, because the\n    sum of its proper divisors 54 is greater than itself. To count from\n    1 to 42 would take you about twenty-one…",
+                                "image": {
+                                    "url": "https://example.google.com/42.png",
+                                    "accessibilityText": "Image alternate text"
+                                },
+                                "buttons": [
+                                    {
+                                        "title": "Read more",
+                                        "openUrlAction": {
+                                            "url": "https://example.google.com/mathandprimes"
+                                        }
+                                    }
+                                ],
+                                "imageDisplayOptions": "CROPPED"
+                            }
+                        }
+                    ],
+                    "suggestions": []
+                }
+            },
+            "possibleIntents": [
+                {
+                    "intent": "actions.intent.TEXT"
+                }
+            ]
+        }
+    ]
+});
 });
 
-restService.post("/audio", function (req, res) {
+restService.post("/audio", function(req, res) {
   var speech = "";
   switch (req.body.result.parameters.AudioSample.toLowerCase()) {
     //Speech Synthesis Markup Language 
@@ -134,7 +159,7 @@ restService.post("/audio", function (req, res) {
   });
 });
 
-restService.post("/video", function (req, res) {
+restService.post("/video", function(req, res) {
   return res.json({
     speech:
       '<speak>  <audio src="https://www.youtube.com/watch?v=VX7SSnvpj-8">did not get your MP3 audio file</audio></speak>',
@@ -144,7 +169,7 @@ restService.post("/video", function (req, res) {
   });
 });
 
-restService.post("/slack-test", function (req, res) {
+restService.post("/slack-test", function(req, res) {
   var slack_message = {
     text: "Details of JIRA board for Browse and Commerce",
     attachments: [
@@ -209,6 +234,6 @@ restService.post("/slack-test", function (req, res) {
   });
 });
 
-restService.listen(process.env.PORT || 8000, function () {
+restService.listen(process.env.PORT || 8000, function() {
   console.log("Server up and listening");
 });
