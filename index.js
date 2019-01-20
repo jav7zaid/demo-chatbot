@@ -21,7 +21,7 @@ restService.post("/revrec", function(req, res) {
       ? req.body.result.parameters.reports
       : "Seems like some problem. Speak again.";
   return res.json({
-    speech: <a href="https://drive.google.com/file/d/1EDSjLvCxIFoHCp-KhCt8DUBlMdWqc-lQ/view">Click to download the report</a>,
+    speech: speech,
     displayText: speech,
     source: "webhook-echo-sample"
   });
@@ -33,7 +33,7 @@ restService.post("/audio", function(req, res) {
     //Speech Synthesis Markup Language 
     case "music one":
       speech =
-        '<speak><audio src="https://drive.google.com/file/d/1EDSjLvCxIFoHCp-KhCt8DUBlMdWqc-lQ/view">did not get your audio file</audio></speak>';
+        '<speak><audio src="https://actions.google.com/sounds/v1/cartoon/slide_whistle.ogg">did not get your audio file</audio></speak>';
       break;
     case "music two":
       speech =
